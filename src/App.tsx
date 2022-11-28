@@ -1,21 +1,21 @@
-import React from "react";
+import { useObserver } from "mobx-react-lite";
 import "./App.css";
+import Header from "./Components/Header/Header";
+import PremiumCollection from "./Components/Main/PremiumCollection";
+import NavBar from "./Components/NavBar/NavBar";
 
 interface Props {}
 interface State {}
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {};
-  }
-  render() {
+function App() {
+  return useObserver(() => {
     return (
       <div className="App">
-        <p>HI</p>
+        <Header />
+        <NavBar />
+        <PremiumCollection />
       </div>
     );
-  }
+  });
 }
 
 export default App;

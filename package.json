@@ -13,7 +13,10 @@
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fluentui/web-components": "^2.5.8",
+    "@types/react-icons": "^3.0.0",
     "@types/uuid": "^8.3.4",
+    "axios": "^1.2.0",
     "framer-motion": "^6",
     "mobx": "^6.7.0",
     "mobx-react": "^7.6.0",
@@ -27,6 +30,7 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
+    "concurrently": "^7.6.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
   }
