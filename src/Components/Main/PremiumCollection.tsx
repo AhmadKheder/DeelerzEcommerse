@@ -9,7 +9,6 @@ import ItemCard from "./ItemCard";
 export const PremiumCollection = observer(() => {
   const productsStore = useRootState().productsStore;
   const { products } = productsStore;
-  productsStore.fetchProducts();
 
   const [productsList, setProductsList] = useState<Product[] | null>(products);
 
@@ -18,6 +17,27 @@ export const PremiumCollection = observer(() => {
   );
 
   const { height, width } = useWindowDimensions();
+
+  const filterByCategoryHandler = (category: string) => {
+    if (category === "all") {
+      setShownProducts(productsList);
+    } else {
+      let productsLst: Product[] | null = products
+        ? products.filter((item) => {
+            return item.category === category;
+          })
+        : null;
+      setShownProducts(productsLst);
+    }
+  };
+  const getSortedProductsHandler = () => {
+    setProductsList(products);
+    setShownProducts(products);
+  };
+  useEffect(() => {
+    setProductsList(products);
+    setShownProducts(products);
+  }, [products, productsList]);
 
   const theme = {
     collectionTitleContaner: {
@@ -49,27 +69,6 @@ export const PremiumCollection = observer(() => {
     },
     SingleItemContainer: {},
   };
-
-  const filterByCategoryHandler = (category: string) => {
-    if (category === "all") {
-      setShownProducts(productsList);
-    } else {
-      let productsLst: Product[] | null = products
-        ? products.filter((item) => {
-            return item.category === category;
-          })
-        : null;
-      setShownProducts(productsLst);
-    }
-  };
-  const getSortedProductsHandler = () => {
-    setProductsList(products);
-    setShownProducts(products);
-  };
-  useEffect(() => {
-    setProductsList(products);
-    setShownProducts(products);
-  }, [products, productsList]);
   return (
     <Box
       sx={{
