@@ -16,6 +16,10 @@ export const PremiumCollection = observer(() => {
     productsList
   );
 
+  productsStore.getCartProducts.map((product) => {
+    console.log(product.category);
+  });
+
   const { height, width } = useWindowDimensions();
 
   const filterByCategoryHandler = (category: string) => {

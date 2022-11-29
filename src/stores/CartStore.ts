@@ -1,14 +1,11 @@
 import { action, computed, makeAutoObservable, observable } from "mobx";
-import { getProducts } from "../Common/api";
 import { Product } from "../Common/types";
 
-export default class ProductsStore {
-    // const {context} = useContext(DataContext)
+export default class CartStore {
     constructor() {
         makeAutoObservable(this)
     }
     @observable
-    products: Product[] = []
     cartProducts: Product[] = [
         {
             "id": 1,
@@ -61,32 +58,6 @@ export default class ProductsStore {
     ]
 
 
-
-
-
-    @action
-    fetchProducts = async () => {
-        getProducts().then(products => this.products = products);
-
-    }
-
-    @action
-    addProduct = (product: Product) => {
-        this.products.push(product);
-    }
-    @action
-    deleteProduct = (id: number) => {
-        this.products = this.products.filter(product => product.id !== id);
-    }
-    @computed
-    get total() {
-        return this.products.length;
-    }
-
-    @computed
-    get getProducts() {
-        return this.products;
-    }
 
     @action
     addCartProduct = (product: Product) => {
