@@ -1,7 +1,7 @@
 import { useObserver } from "mobx-react-lite";
 import "./App.css";
 import Header from "./Components/Header/Header";
-import PremiumCollection from "./Components/Main/PremiumCollection";
+import { PremiumCollection } from "./Components/Main/PremiumCollection";
 import NavBar from "./Components/NavBar/NavBar";
 
 interface Props {}

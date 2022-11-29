@@ -1,27 +1,21 @@
 import { Box, Button } from "@chakra-ui/react";
-// import { observer } from "mobx-react";
-import { useContext, useEffect, useState } from "react";
+import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
 import { Product } from "../../Common/types";
 import useWindowDimensions from "../../Common/window";
 import { useRootState } from "../../stores/RootStateContextValue";
 import ItemCard from "./ItemCard";
 
-// @observer['productsStore']
-export default function PremiumCollection() {
+export const PremiumCollection = observer(() => {
   const productsStore = useRootState().productsStore;
-
-  // const productsStoreInstanceContext = createContext(new ProductsSdtore());
   const { products } = productsStore;
-  useContext(productsStore.fetchProducts());
-  // console.log("productsStore???sad?", productsStore.products);
-  // console.log("productsStore???sad?1111", productsStore1.products);
+  productsStore.fetchProducts();
 
   const [productsList, setProductsList] = useState<Product[] | null>(products);
 
-  // const productDATA = productsStore.fetchProducts();
-
-  const [shownProducts, setShownProducts] = useState<Product[] | null>(null);
-  const [url, setUrl] = useState<string>("https://fakestoreapi.com/products");
+  const [shownProducts, setShownProducts] = useState<Product[] | null>(
+    productsList
+  );
 
   const { height, width } = useWindowDimensions();
 
@@ -75,7 +69,7 @@ export default function PremiumCollection() {
   useEffect(() => {
     setProductsList(products);
     setShownProducts(products);
-  }, []);
+  }, [products, productsList]);
   return (
     <Box
       sx={{
@@ -123,7 +117,7 @@ export default function PremiumCollection() {
           <Button
             color="inherit"
             onClick={() => {
-              setUrl("https://fakestoreapi.com/products?sort=desc");
+              // setUrl("c");
               getSortedProductsHandler();
             }}
           >
@@ -143,4 +137,4 @@ export default function PremiumCollection() {
       </section>
     </Box>
   );
-}
+});
