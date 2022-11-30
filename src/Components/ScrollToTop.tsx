@@ -21,7 +21,7 @@ const ScrollToTop = () => {
       cursor: "pointer",
       transition: "all 0.3s ease-in-out",
       zIndex: 1000,
-    },
+    } as React.StyleHTMLAttributes<HTMLDivElement>,
   };
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -33,7 +33,6 @@ const ScrollToTop = () => {
     });
   }, []);
 
-  
   return (
     <>
       {showScrollTopButton && (
