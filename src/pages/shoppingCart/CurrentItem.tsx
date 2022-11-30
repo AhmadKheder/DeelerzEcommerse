@@ -1,11 +1,12 @@
 import {
-    CloseButton,
-    Flex,
-    Link,
-    Select,
-    SelectProps,
-    useColorModeValue
+  CloseButton,
+  Flex,
+  Link,
+  Select,
+  SelectProps,
+  useColorModeValue,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { CartProductMeta } from "./CartProductMeta";
 import { PriceTag } from "./PriceTag";
 
@@ -20,7 +21,7 @@ type CartItemProps = {
   image: string;
   onChangeQuantity?: (quantity: number) => void;
   //   onClickGiftWrapping?: () => void;
-  onClickDelete?: (id: number) => void;
+  onClickDelete: (id: number) => void;
 };
 
 const QuantitySelect = (props: SelectProps) => {
@@ -45,14 +46,16 @@ export const CartItem = (props: CartItemProps) => {
     id,
     title,
     description,
-    quantity = 10,
+    quantity,
     image,
     currency = "USD",
     price,
     onChangeQuantity,
     onClickDelete,
   } = props;
-
+  const [requestedQuantity, setQuantity] = useState<number | undefined>(
+    quantity
+  );
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -77,7 +80,7 @@ export const CartItem = (props: CartItemProps) => {
         display={{ base: "none", md: "flex" }}
       >
         <QuantitySelect
-          value={quantity}
+          value={requestedQuantity}
           onChange={(e) => {
             onChangeQuantity?.(+e.currentTarget.value);
           }}
@@ -85,7 +88,8 @@ export const CartItem = (props: CartItemProps) => {
         <PriceTag price={price} currency={currency} />
         <CloseButton
           aria-label={`Delete ${title} from cart`}
-          onClick={(id:number)=>onClickDelete(id)}
+          //   onClick={() => onClickDelete(id)
+          onClick={() => onClickDelete(+id)}
         />
       </Flex>
 

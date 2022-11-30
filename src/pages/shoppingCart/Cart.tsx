@@ -25,9 +25,13 @@ export const Cart = observer(() => {
     setTotalItems(cartStore.totalCartProducts);
     setCartData(cartStore.getCartProducts);
   }, [cartStore.totalCartProducts]);
-  const onClickDeleteHandler = (id: number): void => {
-    // cartStore.deleteCartProduct(id);
+  const onClickDeleteHandler = (id: number) => {
+    cartStore.deleteCartProduct(id);
     console.log("delete from cart id: ", id);
+  };
+  const onChangeQuantityHandler = (quantity: number) => {
+    console.log("quantity: ", quantity);
+    console.log("onChangeQuantityHandler");
   };
 
   return (
@@ -52,7 +56,8 @@ export const Cart = observer(() => {
               <CartItem
                 key={product.id}
                 {...product}
-                onClickDelete={(id: number) => onClickDeleteHandler(id)}
+                onClickDelete={onClickDeleteHandler}
+                onChangeQuantity={onChangeQuantityHandler}
               />
             ))}
           </Stack>
