@@ -9,13 +9,21 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { observer } from "mobx-react";
 import { Product } from "../../Common/types";
+import { useRootState } from "../../stores/RootStateContextValue";
+
 interface Props {
   product: Product;
 }
-export default function ItemCard(props: Props) {
+export const ItemCard = observer((props: Props) => {
+  const cartStore = useRootState().cartStore;
+  // console.log("getCartProducts: ", cartStore.getCartProducts);
   const { title, category, image } = props.product;
-
+  const addProductToCart = (product: Product) => {
+    cartStore.addCartProduct(product);
+    console.log("addProductToCart-product: ", product);
+  };
   const theme = {
     card: {
       width: "100%",
@@ -62,6 +70,7 @@ export default function ItemCard(props: Props) {
             borderRadius="50%"
             backgroundColor="#F86338"
             style={theme.cardAction}
+            onClick={() => addProductToCart(props.product)}
           >
             <ArrowForwardIcon />
           </Button>
@@ -70,4 +79,4 @@ export default function ItemCard(props: Props) {
       <Divider />
     </Card>
   );
-}
+});

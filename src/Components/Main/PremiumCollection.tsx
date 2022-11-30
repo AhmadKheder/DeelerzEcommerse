@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Product } from "../../Common/types";
 import useWindowDimensions from "../../Common/window";
 import { useRootState } from "../../stores/RootStateContextValue";
-import ItemCard from "./ItemCard";
+import { ItemCard } from "./ItemCard";
+// import ItemCard from "./ItemCard";
 
 export const PremiumCollection = observer(() => {
   const productsStore = useRootState().productsStore;
