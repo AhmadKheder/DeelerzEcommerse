@@ -27,7 +27,7 @@ function App() {
         <section ref={cart}>
           <Cart />
         </section>
-        <div style={{ border: "1px solid red" }}>
+        <div >
           <ScrollToTop />
         </div>
       </div>

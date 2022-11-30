@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 
 import Shipping from "../Header/Shipping";
+import SearchBox from "./SearchBox";
 interface Props {
   reference: any;
 }
@@ -35,13 +36,14 @@ export default function NavBar(props: Props) {
     <Box>
       <Flex
         bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
+        color={useColorModeValue("gray.800", "gray.800")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
+        sx={{ backgroundColor: "#E5E5E5" }}
+        borderColor={useColorModeValue("gray.800", "gray.800")}
         align={"center"}
       >
         <Flex
@@ -77,7 +79,7 @@ export default function NavBar(props: Props) {
           </Flex>
         </Flex>
         <div style={{ margin: "0 150px 0 0", width: "400px" }}>
-          <Input placeholder="Basic usage" />
+          <SearchBox/>
         </div>
 
         <Shipping reference={reference} />
@@ -254,31 +256,31 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Promo",
     children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
-      },
+      // {
+      //   label: "Explore Design Work",
+      //   subLabel: "Trending Design to inspire you",
+      //   href: "#",
+      // },
+      // {
+      //   label: "New & Noteworthy",
+      //   subLabel: "Up-and-coming Designers",
+      //   href: "#",
+      // },
     ],
   },
   {
     label: "About",
     children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
+      // {
+      //   label: "Job Board",
+      //   subLabel: "Find your dream design job",
+      //   href: "#",
+      // },
+      // {
+      //   label: "Freelance Projects",
+      //   subLabel: "An exclusive list for contract work",
+      //   href: "#",
+      // },
     ],
   },
   {
