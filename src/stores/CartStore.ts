@@ -57,16 +57,27 @@ export default class CartStore {
         },
     ]
 
-
-
     @action
     addCartProduct = (product: Product) => {
-        this.cartProducts.push(product);
+        this.isProductInCart(product.id) ?
+            this.increaseQuantity(product.id) :
+            this.cartProducts.push({ ...product, quantity: 1 })
+        console.log("this.cartProducts", this.cartProducts)
     }
+
     @action
     deleteCartProduct = (id: number) => {
         this.cartProducts = this.cartProducts.filter(product => product.id !== id);
     }
+    @action
+    increaseQuantity = (id: number) => {
+        this.cartProducts = this.cartProducts.map(product => product.id === id ? { ...product, quantity: product.quantity! + 1 } : product);
+    }
+    @computed
+    get isProductInCart() {
+        return (id: number) => this.cartProducts.some(product => product.id === id);
+    }
+
     @computed
     get getCartProducts() {
         return this.cartProducts
@@ -75,6 +86,11 @@ export default class CartStore {
     get totalCartProducts() {
         return this.cartProducts.length;
     }
+    @computed
+    get totalCartPrice() {
+        return this.cartProducts.reduce((total, product) => total + product.price, 0);
+    }
+
 
 }
 

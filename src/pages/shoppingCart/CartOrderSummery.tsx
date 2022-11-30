@@ -7,10 +7,11 @@ import {
   Text,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
+import { observer } from "mobx-react";
 import * as React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { useRootState } from "../../stores/RootStateContextValue";
 import { formatPrice } from "./PriceTag";
-
 type OrderSummaryItemProps = {
   label: string;
   value?: string;
@@ -19,6 +20,7 @@ type OrderSummaryItemProps = {
 
 const OrderSummaryItem = (props: OrderSummaryItemProps) => {
   const { label, value, children } = props;
+
   return (
     <Flex justify="space-between" fontSize="sm">
       <Text fontWeight="medium" color={mode("gray.600", "gray.400")}>
@@ -29,7 +31,13 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
   );
 };
 
-export const CartOrderSummary = () => {
+export const CartOrderSummary = observer(() => {
+  const cartStore = useRootState().cartStore;
+  const [totalPrice, setTotalPrice] = React.useState<number>(0);
+  React.useEffect(() => {
+    setTotalPrice(cartStore.totalCartPrice);
+  }, [cartStore.cartProducts, , cartStore.totalCartProducts]);
+
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
       <Heading size="md">Order Summary</Heading>
@@ -41,18 +49,19 @@ export const CartOrderSummary = () => {
             Calculate shipping
           </Link>
         </OrderSummaryItem>
-        
+
         <Flex justify="space-between">
           <Text fontSize="lg" fontWeight="semibold">
             Total
           </Text>
           <Text fontSize="xl" fontWeight="extrabold">
-            {formatPrice(597)}
+            {formatPrice(totalPrice)}
           </Text>
         </Flex>
       </Stack>
       <Button
-        colorScheme="blue"
+        color="#FFFFFF"
+        backgroundColor={"#F86338"}
         size="lg"
         fontSize="md"
         rightIcon={<FaArrowRight />}
@@ -61,4 +70,4 @@ export const CartOrderSummary = () => {
       </Button>
     </Stack>
   );
-};
+});

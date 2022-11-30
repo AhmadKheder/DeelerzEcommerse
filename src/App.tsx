@@ -2,6 +2,7 @@ import { useObserver } from "mobx-react-lite";
 import { useRef } from "react";
 import "./App.css";
 import Header from "./Components/Header/Header";
+import { LandGround } from "./Components/HomeLandGround/LandGround";
 import { PremiumCollection } from "./Components/Main/PremiumCollection";
 import NavBar from "./Components/NavBar/NavBar";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -21,6 +22,7 @@ function App() {
       <div className="App">
         <Header />
         <NavBar reference={cart} />
+        <LandGround />
         <PremiumCollection />
         <section ref={cart}>
           <Cart />

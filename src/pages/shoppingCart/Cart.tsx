@@ -11,6 +11,7 @@ import {
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { Product } from "../../Common/types";
+import { scrollTop } from "../../Common/window";
 import { useRootState } from "../../stores/RootStateContextValue";
 
 import { CartOrderSummary } from "./CartOrderSummery";
@@ -67,7 +68,9 @@ export const Cart = observer(() => {
           <CartOrderSummary />
           <HStack mt="6" fontWeight="semibold">
             <p>or</p>
-            <Link color={mode("blue.500", "blue.200")}>Continue shopping</Link>
+            <Link color={mode("#F86338", "#F86338")} onClick={scrollTop}>
+              Continue shopping
+            </Link>
           </HStack>
         </Flex>
       </Stack>
