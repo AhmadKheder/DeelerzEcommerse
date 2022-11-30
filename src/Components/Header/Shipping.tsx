@@ -1,11 +1,24 @@
-import { BellIcon } from "@chakra-ui/icons";
 import { Button, Stack } from "@chakra-ui/react";
+import { MdOutlinePersonOutline } from "react-icons/md";
+import Basket from "../../assets/basket.svg";
+import Bell from "../../assets/Bell.svg";
+import Heart from "../../assets/Heart.svg";
 import { scrollToSection } from "../../Common/window";
 interface Props {
   reference: any;
 }
 export default function Shipping(props: Props) {
   const { reference } = props;
+  const theme = {
+    person__icon: {
+      width: "34px",
+      height: "40px",
+      color: "#000",
+      fontSize: "40px",
+      fill: "#000",
+      fontWeight: "bold",
+    },
+  };
 
   return (
     <Stack
@@ -21,10 +34,7 @@ export default function Shipping(props: Props) {
         variant={"link"}
         href={"#"}
       >
-        <img
-          src="https://webstockreview.net/images/hearts-vector-png-7.png"
-          alt="Heart-icon-img"
-        />
+        <img src={Heart} alt="Heart-icon-svg" />
       </Button>
 
       <Button
@@ -34,10 +44,7 @@ export default function Shipping(props: Props) {
         variant={"link"}
         href={"#"}
       >
-        <img
-          src="https://th.bing.com/th/id/R.2c67d76b91a872592099e6620114b511?rik=Bm3Dc31sb2ky3g&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fdownload_405324.png&ehk=0H0eTs0SyIlTZiPIVGlfZXXdAKpbkPLlTTQ0N2tHXgw%3d&risl=&pid=ImgRaw&r=0"
-          alt="Person-icon-img"
-        />
+        <img src={Basket} alt="Basket-icon-svg" />
       </Button>
 
       <Button
@@ -50,11 +57,7 @@ export default function Shipping(props: Props) {
         height={"20px"}
         onClick={() => scrollToSection(reference)}
       >
-        <img
-          src="https://th.bing.com/th/id/R.672ae334c8366021fd588786f054cb2d?rik=5OKBZlZEdbRDrA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_225646.png&ehk=Tjxw1TwcwdV5%2ftOEQVrvqgnbn0XKd%2fweSJ6aBiXxKB0%3d&risl=&pid=ImgRaw&r=0"
-          alt="Cart-icon-img"
-        />
-        {/* Shipping & Returns */}
+        <MdOutlinePersonOutline style={theme.person__icon} />
       </Button>
 
       <Button
@@ -72,7 +75,7 @@ export default function Shipping(props: Props) {
           }
         }
       >
-        <BellIcon />
+        <img src={Bell} alt="Bell-icon-svg" />
       </Button>
     </Stack>
   );
