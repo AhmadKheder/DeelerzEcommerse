@@ -1,17 +1,17 @@
 import { Box, Text } from "@chakra-ui/react";
-import { BsTelephone } from "react-icons/bs";
-export default function CallCenter() {
+import { BsTruck } from "react-icons/bs";
+export default function ShippingsAndReturns() {
   const theme = {
-    callCenter: {
+    shippings: {
       display: "flex",
       alignItems: "center",
       marginLeft: "20px",
     },
-    callCenter__icon: {
+    shippings__icon: {
       fontSize: "16px",
       margin: "0 8px",
     },
-    callCenter__text: {
+    shippings__text: {
       display: "flex",
       alignItems: "center",
       fontSize: "16px",
@@ -19,9 +19,9 @@ export default function CallCenter() {
     },
   };
   return (
-    <Box style={theme.callCenter}>
-      <BsTelephone style={theme.callCenter__icon} />
-      <Text style={theme.callCenter__text}>Call Center</Text>
+    <Box style={theme.shippings}>
+      <BsTruck style={theme.shippings__icon} />
+      <Text style={theme.shippings__text}>Shippings & Returns</Text>
     </Box>
   );
 }

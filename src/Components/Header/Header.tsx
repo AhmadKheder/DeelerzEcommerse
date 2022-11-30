@@ -1,37 +1,40 @@
 import CallCenter from "./CallCenter";
 import Logo from "./Logo";
-import Shipping from "./Shipping";
-
+import ShippingsAndReturns from "./ShippingsAndReturns";
 export default function Header() {
-  //   const classes = useStyles();
-  //   const { height, width } = useWindowDimensions();
+  const theme = {
+    header: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "0 20px",
+      height: "100px",
 
+      backgroundColor: "#fff",
+      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    },
+
+    header__logo__text: {
+      fontSize: "24px",
+      fontWeight: "bold",
+      color: "#F86338",
+      marginLeft: "10px",
+    },
+
+    header_contact_shippings: {
+      display: "flex",
+      alignItems: "center",
+    },
+  };
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "93px",
-          left: "0px",
-          top: "0px",
-          border: "2px solid red",
-          background: "#FFFFFF",
-        }}
-      >
-        <section className={"classes.logo"}>
-          <Logo />
-        </section>
-
-        <div className={"Sd"}>
-          <div>
-            <CallCenter />
-          </div>
-          <div>
-            {/* <Shipping /> */}
-          </div>
-        </div>
-      </div>
+    <div style={theme.header}>
+      <section style={theme.header__logo__text}>
+        <Logo />
+      </section>
+      <section style={theme.header_contact_shippings}>
+        <CallCenter />
+        <ShippingsAndReturns />
+      </section>
     </div>
   );
 }
