@@ -24,3 +24,15 @@ export default function useWindowDimensions() {
 
   return windowDimensions;
 }
+export const scrollToSection = (elementRef: any) => {
+  window.scrollTo({
+    top: elementRef.current.offsetTop,
+    behavior: "smooth",
+  });
+};
+export const scrollTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};

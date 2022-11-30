@@ -21,8 +21,14 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+
 import Shipping from "../Header/Shipping";
-export default function NavBar() {
+interface Props {
+  reference: any;
+}
+
+export default function NavBar(props: Props) {
+  const { reference } = props;
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -74,7 +80,7 @@ export default function NavBar() {
           <Input placeholder="Basic usage" />
         </div>
 
-        <Shipping />
+        <Shipping reference={reference} />
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

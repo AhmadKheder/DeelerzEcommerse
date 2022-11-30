@@ -61,9 +61,6 @@ export default class ProductsStore {
     ]
 
 
-
-
-
     @action
     fetchProducts = async () => {
         getProducts().then(products => this.products = products);

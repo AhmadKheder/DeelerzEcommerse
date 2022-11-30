@@ -1,6 +1,12 @@
 import { BellIcon } from "@chakra-ui/icons";
 import { Button, Stack } from "@chakra-ui/react";
-export default function Shipping() {
+import { scrollToSection } from "../../Common/window";
+interface Props {
+  reference: any;
+}
+export default function Shipping(props: Props) {
+  const { reference } = props;
+
   return (
     <Stack
       flex={{ base: 1, md: 0 }}
@@ -42,12 +48,13 @@ export default function Shipping() {
         href={"#"}
         width={"20px"}
         height={"20px"}
+        onClick={() => scrollToSection(reference)}
       >
         <img
           src="https://th.bing.com/th/id/R.672ae334c8366021fd588786f054cb2d?rik=5OKBZlZEdbRDrA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_225646.png&ehk=Tjxw1TwcwdV5%2ftOEQVrvqgnbn0XKd%2fweSJ6aBiXxKB0%3d&risl=&pid=ImgRaw&r=0"
           alt="Cart-icon-img"
         />
-        Shipping & Returns
+        {/* Shipping & Returns */}
       </Button>
 
       <Button
