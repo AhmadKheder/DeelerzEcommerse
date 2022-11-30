@@ -44,7 +44,7 @@ export default function Shipping(props: Props) {
         variant={"link"}
         href={"#"}
       >
-        <img src={Basket} alt="Basket-icon-svg" />
+        <MdOutlinePersonOutline style={theme.person__icon} />
       </Button>
 
       <Button
@@ -57,7 +57,7 @@ export default function Shipping(props: Props) {
         height={"20px"}
         onClick={() => scrollToSection(reference)}
       >
-        <MdOutlinePersonOutline style={theme.person__icon} />
+        <img src={Basket} alt="Basket-icon-svg" />
       </Button>
 
       <Button
