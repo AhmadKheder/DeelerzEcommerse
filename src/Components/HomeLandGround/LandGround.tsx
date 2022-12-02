@@ -12,10 +12,8 @@ export const LandGround = () => {
       height: "640px",
       width: useWindowDimensions().width,
       backgroundColor: "#FFFFFF",
-      //   border: "1px solid black",
     },
     left__landGround__section: {
-      //   backgroundColor: "pink",
       height: "640px",
     },
     right__landGround__section: {
@@ -24,7 +22,6 @@ export const LandGround = () => {
       alignItems: "start",
       justifyContent: "center",
       height: "640px",
-      //   backgroundColor: "lightblue",
     } as CSSProperties,
     landGround__heading: {
       fontWeight: "700",

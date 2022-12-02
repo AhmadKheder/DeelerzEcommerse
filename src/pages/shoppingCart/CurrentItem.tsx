@@ -41,6 +41,7 @@ const theme = {
 const QuantitySelect = observer((props: SelectProps) => {
   const cartStore = useRootState().cartStore;
   console.log("props :>> ", props);
+  // cartStore.addCartProduct(props);
   const [orderedQuantity, setOrderedQuantity] = useState<number>(1);
 
   useEffect(() => {

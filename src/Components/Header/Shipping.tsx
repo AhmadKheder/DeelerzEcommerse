@@ -1,82 +1,61 @@
-import { Button, Stack } from "@chakra-ui/react";
-import { MdOutlinePersonOutline } from "react-icons/md";
-import Basket from "../../assets/basket.svg";
-import Bell from "../../assets/Bell.svg";
-import Heart from "../../assets/Heart.svg";
+import { Button } from "@chakra-ui/react";
+import { IoPersonOutline } from "react-icons/io5";
+
+import { observer } from "mobx-react-lite";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { BsBell } from "react-icons/bs";
 import { scrollToSection } from "../../Common/window";
 interface Props {
   reference: any;
 }
-export default function Shipping(props: Props) {
+export const Shipping = observer((props: Props) => {
   const { reference } = props;
   const theme = {
-    person__icon: {
-      width: "34px",
-      height: "40px",
+    nav__icon: {
+      width: "30px",
+      height: "30px",
       color: "#000",
-      fontSize: "40px",
-      fill: "#000",
-      fontWeight: "bold",
     },
   };
 
   return (
-    <Stack
-      flex={{ base: 1, md: 0 }}
-      justify={"flex-end"}
-      direction={"row"}
-      spacing={20}
-    >
-      <Button
-        as={"a"}
-        fontSize={"sm"}
-        fontWeight={400}
-        variant={"link"}
-        href={"#"}
-      >
-        <img src={Heart} alt="Heart-icon-svg" />
+    <>
+      <Button variant={"link"}>
+        <AiOutlineHeart style={theme.nav__icon} />
       </Button>
 
-      <Button
-        as={"a"}
-        fontSize={"sm"}
-        fontWeight={400}
-        variant={"link"}
-        href={"#"}
-      >
-        <MdOutlinePersonOutline style={theme.person__icon} />
+      <Button variant={"link"}>
+        <IoPersonOutline style={theme.nav__icon} />
       </Button>
 
-      <Button
-        as={"a"}
-        fontSize={"sm"}
-        fontWeight={400}
-        variant={"link"}
-        href={"#"}
-        width={"20px"}
-        height={"20px"}
-        onClick={() => scrollToSection(reference)}
-      >
-        <img src={Basket} alt="Basket-icon-svg" />
+      <Button variant={"link"} onClick={() => scrollToSection(reference)}>
+        <AiOutlineShoppingCart style={theme.nav__icon} />
+        <div
+          style={{
+            position: "absolute",
+            top: "-14px",
+            left: "30px",
+            width: "24px",
+            height: "24px",
+            borderRadius: "50%",
+            backgroundColor: "#F86338",
+            color: "#fff",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+
+            fontSize: "12px",
+
+            fontWeight: "bold",
+          }}
+        >
+          3
+        </div>
       </Button>
 
-      <Button
-        display={{ base: "none", md: "inline-flex" }}
-        as={"a"}
-        fontSize={"sm"}
-        fontWeight={400}
-        variant={"link"}
-        href={"#"}
-        width={"20px"}
-        height={"20px"}
-        _hover={
-          {
-            //   bg: "pink.300",
-          }
-        }
-      >
-        <img src={Bell} alt="Bell-icon-svg" />
+      <Button variant={"link"}>
+        <BsBell style={theme.nav__icon} />
       </Button>
-    </Stack>
+    </>
   );
-}
+});
