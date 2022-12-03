@@ -41,7 +41,7 @@ export default class CartStore {
     }
     @computed
     get totalCartPrice() {
-        return this.cartProducts.reduce((total, product) => total + product.price, 0);
+        return this.cartProducts.reduce((total, product) => total + (product.price * product.quantity!), 0);
     }
     @computed
     checkoutOrderedProductQuantity(id: number) {
