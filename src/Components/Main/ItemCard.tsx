@@ -18,11 +18,10 @@ interface Props {
 }
 export const ItemCard = observer((props: Props) => {
   const cartStore = useRootState().cartStore;
-  // console.log("getCartProducts: ", cartStore.getCartProducts);
   const { title, category, image } = props.product;
   const addProductToCart = (product: Product) => {
     cartStore.addCartProduct(product);
-    console.log("addProductToCart-product: ", product);
+    // console.log("addProductToCart-product: ", product);
   };
   const theme = {
     card: {

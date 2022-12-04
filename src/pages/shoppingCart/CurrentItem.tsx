@@ -1,11 +1,4 @@
-import {
-  Box,
-  CloseButton,
-  Flex,
-  Input,
-  Link,
-  SelectProps,
-} from "@chakra-ui/react";
+import { Box, CloseButton, Flex, Input } from "@chakra-ui/react";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -38,15 +31,19 @@ const theme = {
     margin: "0 1rem",
   },
 };
-const QuantitySelect = observer((props: SelectProps) => {
+interface QuantitySelectProps {
+  id: number;
+}
+const QuantitySelect = observer((props: QuantitySelectProps) => {
   const cartStore = useRootState().cartStore;
-  console.log("props :>> ", props);
-  // cartStore.addCartProduct(props);
+  const { id } = props;
   const [orderedQuantity, setOrderedQuantity] = useState<number>(1);
+  const productID = id;
+  const productQuantity = cartStore.getProductQuantity(id);
 
   useEffect(() => {
-    // setOrderedQuantity(cartStore.orderedProductQuantity(props.id));
-  }, []);
+    setOrderedQuantity(productQuantity!);
+  }, [productQuantity]);
 
   return (
     <Box style={theme.quantitySelect}>
@@ -54,7 +51,7 @@ const QuantitySelect = observer((props: SelectProps) => {
       <AiOutlineMinus
         style={theme.math__icons}
         onClick={() =>
-          orderedQuantity > 0 && setOrderedQuantity(orderedQuantity - 1)
+          orderedQuantity > 0 && cartStore.decreaseQuantity(productID)
         }
       />
       <Input
@@ -62,11 +59,13 @@ const QuantitySelect = observer((props: SelectProps) => {
         width="auto"
         value={orderedQuantity}
         style={{ textAlign: "center", color: "#F86338" }}
-        onChange={(e) => setOrderedQuantity(parseInt(e.target.value))}
+        onChange={(e) =>
+          cartStore.setProductQuantity(productID, parseInt(e.target.value))
+        }
       />
       <AiOutlinePlus
         style={theme.math__icons}
-        onClick={() => setOrderedQuantity(orderedQuantity + 1)}
+        onClick={() => cartStore.increaseQuantity(productID)}
       />
       {/* plus */}
     </Box>
@@ -75,7 +74,6 @@ const QuantitySelect = observer((props: SelectProps) => {
 
 export const CartItem = (props: CartItemProps) => {
   const {
-    // isGiftWrapping,
     id,
     title,
     description,
@@ -89,6 +87,9 @@ export const CartItem = (props: CartItemProps) => {
   const [requestedQuantity, setQuantity] = useState<number | undefined>(
     quantity
   );
+
+  console.log("idididdididi ->", id);
+
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -103,7 +104,6 @@ export const CartItem = (props: CartItemProps) => {
             : description
         }
         image={image}
-        // isGiftWrapping={isGiftWrapping}
       />
 
       {/* Desktop */}
@@ -114,6 +114,7 @@ export const CartItem = (props: CartItemProps) => {
       >
         <QuantitySelect
           value={requestedQuantity}
+          id={parseInt(id)}
           onChange={(e) => {
             onChangeQuantity?.(+e.currentTarget.value);
           }}
@@ -124,26 +125,6 @@ export const CartItem = (props: CartItemProps) => {
           //   onClick={() => onClickDelete(id)
           onClick={() => onClickDelete(+id)}
         />
-      </Flex>
-
-      {/* Mobile */}
-      <Flex
-        mt="4"
-        align="center"
-        width="full"
-        justify="space-between"
-        display={{ base: "flex", md: "none" }}
-      >
-        <Link fontSize="sm" textDecor="underline">
-          Delete
-        </Link>
-        <QuantitySelect
-          value={quantity}
-          onChange={(e) => {
-            onChangeQuantity?.(+e.currentTarget.value);
-          }}
-        />
-        <PriceTag price={price} currency={currency} />
       </Flex>
     </Flex>
   );

@@ -5,10 +5,14 @@ import { observer } from "mobx-react-lite";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsBell } from "react-icons/bs";
 import { scrollToSection } from "../../Common/window";
+import { useRootState } from "../../stores/RootStateContextValue";
 interface Props {
   reference: any;
 }
 export const Shipping = observer((props: Props) => {
+  const cartStore = useRootState().cartStore;
+  const items_count = cartStore.cartProductsQuantity;
+
   const { reference } = props;
   const theme = {
     nav__icon: {
@@ -49,7 +53,7 @@ export const Shipping = observer((props: Props) => {
             fontWeight: "bold",
           }}
         >
-          3
+          {items_count}
         </div>
       </Button>
 

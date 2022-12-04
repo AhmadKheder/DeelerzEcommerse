@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { Product } from "../../Common/types";
@@ -16,10 +16,6 @@ export const PremiumCollection = observer(() => {
   const [shownProducts, setShownProducts] = useState<Product[] | null>(
     productsList
   );
-
-  productsStore.getCartProducts.map((product) => {
-    console.log(product.category);
-  });
 
   const { height, width } = useWindowDimensions();
 
@@ -50,6 +46,8 @@ export const PremiumCollection = observer(() => {
       justifyContent: "center",
     },
     collectionTitle: {
+      display: "flex",
+      alignSelf: "center",
       width: "561px",
       height: "58px",
       fontFamily: "DM Sans",
@@ -78,56 +76,75 @@ export const PremiumCollection = observer(() => {
     <Box
       sx={{
         flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignSelf: "center",
+        // width: "100%",
+        // maxWidth: "1000px",
+        alignItems: "center",
+        margin: "0 auto",
       }}
     >
+      <p style={theme.collectionTitle}>Our Premium Collection</p>
       <section>
-        <div style={theme.collectionTitleContaner}>
-          <p style={theme.collectionTitle}>Our Premium Collection</p>
-        </div>
-        <div style={theme.filteringBtnsContaner}>
+        <Flex justify={"space-between"} width={"1200px"}>
           <Button
-            color="inherit"
+            variant="link"
             onClick={() => {
               filterByCategoryHandler("all");
             }}
+            mr={18}
           >
             All Products
           </Button>
-
+          {/* <Spacer /> */}
           <Button
-            color="inherit"
+            variant="link"
             onClick={() => filterByCategoryHandler("men's clothing")}
+            mr={18}
           >
             men's clothing
           </Button>
+          {/* <Spacer /> */}
+
           <Button
-            color="inherit"
+            variant="link"
             onClick={() => filterByCategoryHandler("jewelry")}
+            mr={18}
           >
             jewelry
           </Button>
+          {/* <Spacer /> */}
+
           <Button
-            color="inherit"
+            variant="link"
             onClick={() => filterByCategoryHandler("electronics")}
+            mr={18}
           >
             electronics
           </Button>
+          {/* <Spacer /> */}
+
           <Button
-            color="inherit"
+            variant="link"
             onClick={() => filterByCategoryHandler("women's clothing")}
+            mr={18}
           >
             women's clothing
           </Button>
+          {/* <Spacer /> */}
+
           <Button
-            color="inherit"
+            variant="link"
             onClick={() => {
               // setUrl("c");
               getSortedProductsHandler();
             }}
+            mr={18}
           >
             Sort
           </Button>
-        </div>
+        </Flex>
       </section>
 
       <section style={theme.ItemsContainer}>

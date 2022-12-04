@@ -23,9 +23,10 @@ export const Cart = observer(() => {
   const [cartData, setCartData] = useState<Product[] | []>([]);
 
   useEffect(() => {
-    setTotalItems(cartStore.totalCartProducts);
+    setTotalItems(cartStore.cartProductsQuantity);
     setCartData(cartStore.getCartProducts);
-  }, [cartStore.totalCartProducts]);
+  }, [cartStore.totalCartProducts, cartStore.cartProductsQuantity]);
+
   const onClickDeleteHandler = (id: number) => {
     cartStore.deleteCartProduct(id);
     console.log("delete from cart id: ", id);

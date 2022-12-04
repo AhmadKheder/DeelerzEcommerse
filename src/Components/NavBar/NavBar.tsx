@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Shipping } from "../Header/Shipping";
-import SearchBox from "./SearchBox";
+import { SearchBox } from "./SearchBox";
 interface Props {
   reference: any;
 }
