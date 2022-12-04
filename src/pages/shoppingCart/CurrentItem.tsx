@@ -33,6 +33,8 @@ const theme = {
 };
 interface QuantitySelectProps {
   id: number;
+  value: number;
+  onChange: (e: any) => void;
 }
 const QuantitySelect = observer((props: QuantitySelectProps) => {
   const cartStore = useRootState().cartStore;
@@ -88,8 +90,6 @@ export const CartItem = (props: CartItemProps) => {
     quantity
   );
 
-  console.log("idididdididi ->", id);
-
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -113,7 +113,7 @@ export const CartItem = (props: CartItemProps) => {
         display={{ base: "none", md: "flex" }}
       >
         <QuantitySelect
-          value={requestedQuantity}
+          value={requestedQuantity!}
           id={parseInt(id)}
           onChange={(e) => {
             onChangeQuantity?.(+e.currentTarget.value);
