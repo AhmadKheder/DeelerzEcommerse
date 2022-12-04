@@ -7,16 +7,17 @@ import { CartProductMeta } from "./CartProductMeta";
 
 import { PriceTag } from "./PriceTag";
 type CartItemProps = {
-  //   isGiftWrapping?: boolean;
   id: string;
   title: string;
   description: string;
-  quantity?: number;
+  quantity?: number | undefined;
   price: number;
   currency?: string;
   image: string;
+  rating?: { rate: number; count: number };
+  category?: string;
+  key: number;
   onChangeQuantity?: (quantity: number) => void;
-  //   onClickGiftWrapping?: () => void;
   onClickDelete: (id: number) => void;
 };
 const theme = {

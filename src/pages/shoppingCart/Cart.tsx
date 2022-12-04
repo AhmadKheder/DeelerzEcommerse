@@ -57,7 +57,12 @@ export const Cart = observer(() => {
             {cartData.map((product) => (
               <CartItem
                 key={product.id}
-                {...product}
+                id={product.id.toString()}
+                title={product.title}
+                description={product.description}
+                image={product.image}
+                price={product.price}
+                // {...product}
                 onClickDelete={onClickDeleteHandler}
                 onChangeQuantity={onChangeQuantityHandler}
               />
